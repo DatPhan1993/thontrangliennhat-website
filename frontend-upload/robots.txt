@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow: /private/
+Allow: /
+Sitemap: https://thontrangliennhat.com/sitemap.xml
+
+
