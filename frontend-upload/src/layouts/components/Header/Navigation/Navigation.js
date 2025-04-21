@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link, NavLink } from 'react-router-dom';
-import { getNavigationLinks } from '~/services/navigationService';
+import { getNavigationLinks } from '~/services/navigationApiService';
 import styles from './Navigation.module.scss';
 import Search from '~/layouts/components/Search/Search';
 import PushNotification from '~/components/PushNotification/PushNotification';

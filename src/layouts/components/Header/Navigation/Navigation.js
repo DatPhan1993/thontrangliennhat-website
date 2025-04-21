@@ -22,8 +22,6 @@ import {
     // faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 import images from '~/assets/images';
-// Import danh sách sản phẩm và tin tức cho dropdown
-import { productDropdownItems, newsDropdownItems } from '~/constants/navigationData';
 
 // const iconsData = [
 //     { position: 1, icon: faInfoCircle },
@@ -50,27 +48,7 @@ function Navigation({ isFixed }) {
             try {
                 const links = await getNavigationLinks();
                 const sortedLinks = links.sort((a, b) => a.position - b.position);
-                
-                // Tìm menu SẢN PHẨM và TIN TỨC, cập nhật submenu với danh sách mới
-                const updatedLinks = sortedLinks.map(link => {
-                    // Kiểm tra xem link hiện tại có phải là SẢN PHẨM không
-                    if (link.title === 'SẢN PHẨM' || link.slug === 'san-pham') {
-                        return {
-                            ...link,
-                            children: productDropdownItems
-                        };
-                    }
-                    // Kiểm tra xem link hiện tại có phải là TIN TỨC không
-                    else if (link.title === 'TIN TỨC' || link.slug === 'tin-tuc') {
-                        return {
-                            ...link,
-                            children: newsDropdownItems
-                        };
-                    }
-                    return link;
-                });
-
-                setNavigationLinks(updatedLinks);
+                setNavigationLinks(sortedLinks);
             } catch (error) {
                 setError(error);
                 console.error('Error fetching navigation links:', error);
@@ -143,11 +121,6 @@ function Navigation({ isFixed }) {
             }));
         }
     };
-    
-    // Hàm mở link trong tab mới
-    const openExternalLink = (url) => {
-        window.open(url, '_blank');
-    };
 
     if (error) {
         const errorMessage = error.response ? error.response.data.message : 'Network Error';
@@ -164,14 +137,19 @@ function Navigation({ isFixed }) {
                 <div className={cx('mobile-menu-icon')} onClick={toggleMenu}>
                     <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
                 </div>
-                <Link to="/" className={cx('logo-container')}>
+                <Link to="/">
                     <img src={images.logo} alt="Logo" className={cx('logo')} />
-                    <div className={cx('company-name')}>
-                        <span>HTX SẢN XUẤT NÔNG NGHIỆP VÀ</span>
-                        <span>DỊCH VỤ TỔNG HỢP LIÊN NHẬT</span>
-                    </div>
                 </Link>
                 <ul className={cx('navigation-links', { open: isMenuOpen })}>
+                    <li onClick={handleLinkClick}>
+                        <div className={cx('menu-item')}>
+                            <NavLink end to="/" className={({ isActive }) => cx({ 'active-link': isActive })}>
+                                <div className={cx('item-icon')}>
+                                    Trang Chủ
+                                </div>
+                            </NavLink>
+                        </div>
+                    </li>
                     {navigationLinks.map((link) => {
                         // const iconData = iconsData.find((icon) => icon.position === link.position);
                         const sortedChilds = link.children.sort((a, b) => a.position - b.position);
@@ -210,10 +188,6 @@ function Navigation({ isFixed }) {
                                             const sortedSubChilds = (childLink.children || []).sort(
                                                 (a, b) => a.position - b.position,
                                             );
-                                            
-                                            // Kiểm tra xem childLink có externalUrl không
-                                            const hasExternalLink = childLink.externalUrl;
-                                            
                                             return (
                                                 <li
                                                     key={childLink.id}
@@ -224,19 +198,22 @@ function Navigation({ isFixed }) {
                                                     onMouseLeave={() => handleMouseLeaveChild(link.id, childLink.id)}
                                                     onClick={(e) => {
                                                         e.stopPropagation();
-                                                        if (hasExternalLink) {
-                                                            openExternalLink(childLink.externalUrl);
-                                                        } else {
-                                                            toggleSubSubMenu(link.id, childLink.id);
-                                                        }
+                                                        toggleSubSubMenu(link.id, childLink.id);
                                                     }}
                                                 >
                                                     <div className={cx('sub-link-wrapper')}>
-                                                        <div 
-                                                            className={cx('dropdown-item', { 'external-link': hasExternalLink })}
+                                                        <NavLink
+                                                            to={`/${link.slug}/${childLink.slug}`}
+                                                            className={({ isActive }) =>
+                                                                cx({ 'active-link': isActive })
+                                                            }
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                handleLinkClick();
+                                                            }}
                                                         >
                                                             {childLink.title}
-                                                        </div>
+                                                        </NavLink>
                                                         {sortedSubChilds.length > 0 && (
                                                             <FontAwesomeIcon
                                                                 icon={
@@ -257,9 +234,18 @@ function Navigation({ isFixed }) {
                                                             {sortedSubChilds.map((subChildLink) => {
                                                                 return (
                                                                     <li key={subChildLink.id}>
-                                                                        <div className={cx('dropdown-item')}>
+                                                                        <NavLink
+                                                                            to={`/${link.slug}/${childLink.slug}/${subChildLink.slug}`}
+                                                                            className={({ isActive }) =>
+                                                                                cx({ 'active-link': isActive })
+                                                                            }
+                                                                            onClick={(e) => {
+                                                                                e.stopPropagation(); 
+                                                                                handleLinkClick();
+                                                                            }}
+                                                                        >
                                                                             {subChildLink.title}
-                                                                        </div>
+                                                                        </NavLink>
                                                                     </li>
                                                                 );
                                                             })}

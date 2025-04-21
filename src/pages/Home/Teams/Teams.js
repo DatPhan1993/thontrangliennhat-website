@@ -1,37 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Teams.module.scss';
 import classNames from 'classnames/bind';
 import Title from '~/components/Title/Title';
+import PushNotification from '~/components/PushNotification/PushNotification';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 import TeamModal from '~/components/TeamModal/TeamModal';
-
-// Import ảnh thành viên từ assets
-import teamImages from '~/assets/images/teams';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import { getMembers } from 'services/teamService';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
 function Teams() {
+    const [team, setTeam] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [selectedTeam, setSelectedTeam] = useState(null);
+    const [slidesPerView, setSlidesPerView] = useState(4);
 
-    // Thông tin mới của thành viên hợp tác xã
-    const teamMembers = [
-        {
-            id: 1,
-            name: 'Nguyễn Hữu Quyền',
-            position: 'Giám đốc HTX',
-            avatar: teamImages.director,
-            description: 'Giám đốc HTX Sản xuất nông nghiệp và dịch vụ tổng hợp Liên Nhật'
-        },
-        {
-            id: 2,
-            name: 'Võ Tá Quỳnh',
-            position: 'Quản Lý Thôn Trang Liên Nhật',
-            avatar: teamImages.manager,
-            description: 'Quản lý thôn Trang Liên Nhật và các hoạt động sản xuất nông nghiệp của HTX'
-        }
-    ];
+    useEffect(() => {
+        const fetchTeam = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/team`);
+                console.log('Team response:', response.data);
+                setTeam(response.data);
+                setLoading(false);
+            } catch (err) {
+                setError(err);
+                console.error('Error fetching team:', err);
+                setLoading(false);
+            }
+        };
 
-    const handleOpenDetail = (member) => {
-        setSelectedTeam(member);
+        fetchTeam();
+    }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 1280) {
+                setSlidesPerView(4);
+            } else if (window.innerWidth >= 1024) {
+                setSlidesPerView(3);
+            } else if (window.innerWidth >= 768) {
+                setSlidesPerView(2);
+            } else {
+                setSlidesPerView(1);
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    if (error) {
+        return <div>Error loading team members: {error.message}</div>;
+    }
+
+    if (loading) {
+        return <LoadingScreen isLoading={loading} />;
+    }
+
+    const handleOpenDetail = (team) => {
+        setSelectedTeam(team);
     };
 
     const handleCloseDetail = () => {
@@ -43,12 +81,8 @@ function Teams() {
             <div className={cx('inner')}>
                 <Title text="THÀNH VIÊN HỢP TÁC XÃ" showSeeAll={false} />
                 <div className={cx('team-container')}>
-                    {teamMembers.map((member) => (
-                        <div 
-                            key={member.id} 
-                            className={cx('member-card')}
-                            onClick={() => handleOpenDetail(member)}
-                        >
+                    {team.map((member) => (
+                        <div key={member.id} className={cx('member-card')}>
                             <div className={cx('member-avatar-container')}>
                                 <img src={member.avatar} alt={member.name} className={cx('member-avatar')} />
                             </div>

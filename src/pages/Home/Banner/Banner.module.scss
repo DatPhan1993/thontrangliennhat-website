@@ -3,8 +3,6 @@
 
 .banner {
     width: 100%;
-    height: 512px;
-
     .inner {
         max-width: 100%;
         height: 100%;
@@ -29,20 +27,16 @@
         }
 
         .slide {
-            height: 512px;
-            max-width: 1600px;
-            margin: 0 auto;
-
             @include respond-to(lg) {
-                height: 400px;
-            }
-
-            @include respond-to(md) {
                 height: 300px;
             }
 
+            @include respond-to(md) {
+                height: 260px;
+            }
+
             @include respond-to(sm) {
-                height: 200px;
+                height: 100%;
             }
         }
 
@@ -53,7 +47,7 @@
             transform: translateY(-50%);
             width: 40px;
             height: 40px;
-            background-color: rgba(8, 116, 54, 0.7);
+            background-color: rgba(8, 116, 54, 0.3);
             color: #fff;
             border-radius: 20px;
             border: 1px solid transparent;
@@ -66,10 +60,6 @@
 
             &::after {
                 font-size: 20px;
-            }
-
-            &:hover {
-                background-color: rgba(8, 116, 54, 1);
             }
 
             @include respond-to(sm) {
@@ -95,14 +85,12 @@
     .image-card {
         width: 100%;
         height: 100%;
-        overflow: hidden;
     }
 
     .image {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center;
     }
 
     .contentContainer {

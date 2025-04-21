@@ -171,16 +171,16 @@ function NewsCategory() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{categoryName} | HTX Nông Nghiệp - Dịch Vụ Tổng Hợp Liên Nhật</title>
+                <title>{categoryName} | HTX Nông Nghiệp - Du Lịch Phú Nông Buôn Đôn</title>
                 <meta
                     name="description"
-                    content={`Xem các tin tức liên quan đến ${categoryName} trên HTX Nông Nghiệp - Dịch Vụ Tổng Hợp Liên Nhật.`}
+                    content={`Xem các tin tức liên quan đến ${categoryName} trên HTX Nông Nghiệp - Du Lịch Phú Nông Buôn Đôn.`}
                 />
                 <meta
                     name="keywords"
-                    content={`${categoryName}, tin hợp tác xã, tin nông nghiệp - du lịch, tin tức, thontrangliennhat`}
+                    content={`${categoryName}, tin hợp tác xã, tin nông nghiệp - du lịch, tin tức, phunongbuondon`}
                 />
-                <meta name="author" content="HTX Nông Nghiệp - Dịch Vụ Tổng Hợp Liên Nhật" />
+                <meta name="author" content="HTX Nông Nghiệp - Du Lịch Phú Nông Buôn" />
             </Helmet>
 
             <Title text={categoryName} />

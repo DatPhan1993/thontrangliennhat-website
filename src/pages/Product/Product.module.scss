@@ -1,0 +1,57 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+
+    @include respond-to(lg) {
+        margin-top: 20px;
+        padding: 20px;
+    }
+
+    @include respond-to(sm) {
+        margin-top: 20px;
+        padding: 10px;
+    }
+}
+
+.products-section {
+    width: var(--default-layout-width);
+    display: block;
+
+    @include respond-to(lg) {
+        width: 100%;
+    }
+}
+
+.slide {
+    margin: 20px 0;
+}
+
+.products-column {
+    .products-category {
+        margin-bottom: 40px;
+    }
+
+    .products-items {
+        margin-top: 20px;
+    }
+
+    .products-title {
+        font-size: 20px;
+        min-width: 120px;
+        width: 150px;
+        padding: 4px 8px;
+        background-color: var(--primary);
+        color: var(--white);
+        border-radius: 4px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+.products-items a {
+    text-decoration: none;
+}
