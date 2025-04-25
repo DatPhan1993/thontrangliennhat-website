@@ -22,4 +22,13 @@ cat > build/manifest.json << 'EOF'
 }
 EOF
 
+# Xóa ký tự % nếu có - thích ứng cho macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS
+  sed -i '' 's/%$//g' build/manifest.json
+else
+  # Linux
+  sed -i 's/%$//g' build/manifest.json
+fi
+
 echo "File manifest.json da duoc tao moi toi gian" 

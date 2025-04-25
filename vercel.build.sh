@@ -19,26 +19,42 @@ if [ $? -ne 0 ]; then
   cp -r public/* build/
 fi
 
-# Fix lỗi % ở cuối file
-sed -i 's/%$//g' build/index.html
+# Fix lỗi % ở cuối file - thích ứng cho macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS
+  sed -i '' 's/%$//g' build/index.html
+else
+  # Linux
+  sed -i 's/%$//g' build/index.html
+fi
 
-# Xóa manifest.json hiện tại và chạy fix-manifest.sh
+# Xóa manifest.json hiện tại và tạo mới
 rm -f build/manifest.json
-chmod +x ./fix-manifest.sh
-./fix-manifest.sh
 
-# Thêm một bước nữa để đảm bảo manifest.json không có ký tự đặc biệt
-# Kiểm tra manifest.json có ký tự đặc biệt không
-if grep -q "[^[:ascii:]]" build/manifest.json; then
-  echo "Phát hiện ký tự không phải ASCII, tạo lại file manifest.json"
-  
-  # Tạo manifest siêu tối giản trong trường hợp còn lỗi
-  echo '{
+# Tạo manifest siêu tối giản
+echo '{
   "name": "Thon Trang", 
   "short_name": "Thon Trang",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ],
   "start_url": ".",
-  "display": "standalone"
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }' > build/manifest.json
+
+# Xóa ký tự % ở cuối nếu có - thích ứng cho macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS
+  sed -i '' 's/%$//g' build/manifest.json
+else
+  # Linux
+  sed -i 's/%$//g' build/manifest.json
 fi
 
 echo "Build hoàn tất. Kiểm tra nội dung:"
