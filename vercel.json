@@ -11,7 +11,13 @@
   ],
   "env": {
     "REACT_APP_BASE_URL": "https://api.thontrangliennhat.com",
-    "REACT_APP_API_URL": "https://api.thontrangliennhat.com/api",
-    "DOMAIN": "thontrangliennhat.com"
-  }
+    "REACT_APP_API_URL": "https://api.thontrangliennhat.com/api"
+  },
+  "redirects": [
+    {
+      "source": "www.thontrangliennhat.com",
+      "destination": "https://thontrangliennhat.com",
+      "permanent": true
+    }
+  ]
 } 
