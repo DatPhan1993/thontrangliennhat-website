@@ -1,6 +1,6 @@
 {
-  "short_name": "Thôn Trang Liên Nhật",
-  "name": "Thôn Trang Liên Nhật - HTX Nông Nghiệp và Dịch vụ tổng hợp",
+  "short_name": "Thôn Trang Liên Nhất",
+  "name": "Thôn Trang Liên Nhất - HTX Nông Nghiệp và Dịch vụ tổng hợp",
   "icons": [
     {
       "src": "favicon.ico",
@@ -22,4 +22,4 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
-} 
+}
