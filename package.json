@@ -2,6 +2,7 @@
   "name": "thontrangliennhat.com",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://thontrangliennhat.com",
   "engines": {
     "node": "18.x"
   },
