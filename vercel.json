@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "thontrangliennhat-website",
   "framework": "create-react-app",
   "buildCommand": "npm run build",
   "outputDirectory": "build",
@@ -15,8 +16,14 @@
   },
   "redirects": [
     {
-      "source": "/www.thontrangliennhat.com/(.*)",
-      "destination": "https://thontrangliennhat.com/$1",
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.thontrangliennhat.com"
+        }
+      ],
+      "destination": "https://thontrangliennhat.com/:path*",
       "permanent": true
     }
   ],
@@ -35,6 +42,10 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
         }
       ]
     }
