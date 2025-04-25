@@ -11,8 +11,8 @@
     }
   ],
   "env": {
-    "REACT_APP_BASE_URL": "https://api.thontrangliennhat.com",
-    "REACT_APP_API_URL": "https://api.thontrangliennhat.com/api"
+    "REACT_APP_BASE_URL": "https://thontrangliennhat-fne9hgcvh-phan-dats-projects-d067d5c1.vercel.app",
+    "REACT_APP_API_URL": "https://thontrangliennhat-fne9hgcvh-phan-dats-projects-d067d5c1.vercel.app/api"
   },
   "redirects": [
     {
