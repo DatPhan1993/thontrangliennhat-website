@@ -1,16 +1,26 @@
 #!/bin/bash
 
-# Fix index.html
+# Sửa lỗi ký tự % ở cuối file
 sed -i '' 's/%$//g' build/index.html
-
-# Fix manifest.json
 sed -i '' 's/%$//g' build/manifest.json
 
-echo "Fixed trailing % characters in build files"
+# Tạo bản sao của file
+cp build/index.html build/index.html.bak
 
-# Check if the files have been fixed
-echo "Contents of build/index.html (last 10 characters):"
-tail -c 10 build/index.html
+# Xử lý file index.html để xóa các script và stylesheet trùng lặp
+# Chỉ giữ lại một script và một stylesheet duy nhất
+cat build/index.html.bak | 
+  perl -pe 's/<script defer="defer" src="static\/js\/[^"]+"><\/script>//g' | 
+  perl -pe 's/<link href="static\/css\/[^"]+" rel="stylesheet">//g' > build/index.html
 
-echo "Contents of build/manifest.json (last 10 characters):"
+echo "Fixed files in build folder"
+
+# Kiểm tra nội dung file index.html có các script và stylesheet
+echo "Checking for duplicate scripts and stylesheets:"
+grep -c "<script" build/index.html
+grep -c "<link.*stylesheet" build/index.html
+
+# Kiểm tra xem còn ký tự % ở cuối các file không
+echo "Checking for trailing % character:"
+tail -c 10 build/index.html 
 tail -c 10 build/manifest.json 
