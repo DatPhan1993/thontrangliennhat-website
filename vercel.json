@@ -30,6 +30,10 @@
       "dest": "/$1"
     },
     {
+      "src": "/api/(.*)",
+      "dest": "https://api.thontrangliennhat.com/api/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
@@ -70,6 +74,10 @@
         {
           "key": "Strict-Transport-Security",
           "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }

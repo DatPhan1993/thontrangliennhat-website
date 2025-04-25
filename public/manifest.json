@@ -1,15 +1,32 @@
 {
   "short_name": "Thon Trang",
-  "name": "Thon Trang",
+  "name": "Thon Trang Lien Nhat",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64",
       "type": "image/x-icon"
+    },
+    {
+      "src": "favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#4caf50",
+  "background_color": "#ffffff",
+  "description": "HTX Nong Nghiep va Dich vu tong hop"
 }
