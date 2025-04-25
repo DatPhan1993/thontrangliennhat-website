@@ -3,11 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getMemberById, updateMember } from '~/services/teamService';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import styles from './UpdateMember.module.scss';
 import routes from '~/config/routes';
-import LoadingScreen from '~/components/LoadingScreen';
-import Title from '~/components/Title';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
+import Title from '~/components/Title/Title';
 
 const UpdateMember = () => {
     const navigate = useNavigate();

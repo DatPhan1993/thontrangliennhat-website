@@ -47,16 +47,16 @@ function DefaultLayout({ children, baseRoute, categoryType }) {
                 </div>
                 <Footer />
                 <div className={cx('contact-buttons')}>
-                    <div className={cx('button', 'hotline')} onClick={() => (window.location.href = 'tel:0961862450')}>
+                    <div className={cx('button', 'hotline')} onClick={() => (window.location.href = 'tel:0943768858')}>
                         <FontAwesomeIcon icon={faPhone} />
                     </div>
                     <div
                         className={cx('button', 'zalo')}
-                        onClick={() => (window.location.href = 'https://zalo.me/0961862450')}
+                        onClick={() => (window.location.href = 'https://zalo.me/0943768858')}
                     ></div>
                     <div
                         className={cx('button', 'facebook')}
-                        onClick={() => (window.location.href = 'https://www.facebook.com/profile.php?id=100069322668251')}
+                        onClick={() => (window.location.href = 'https://www.facebook.com/profile.php?id=100091055392835')}
                     >
                         <FontAwesomeIcon icon={faFacebookF} />
                     </div>

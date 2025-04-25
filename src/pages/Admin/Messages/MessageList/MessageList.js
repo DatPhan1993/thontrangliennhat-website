@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { getMessages, deleteMessage } from '~/services/contactService';
 import styles from './MessageList.module.scss';
-import Title from '~/components/Title';
-import PushNotification from '~/components/PushNotification';
+import Title from '~/components/Title/Title';
+import PushNotification from '~/components/PushNotification/PushNotification';
 
 const MessageList = () => {
     const [messages, setMessages] = useState([]);

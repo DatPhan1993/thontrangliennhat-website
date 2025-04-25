@@ -9,7 +9,7 @@ import { faFacebookF, faYoutube } from '@fortawesome/free-brands-svg-icons';
 const cx = classNames.bind(styles);
 
 const Tophead = () => {
-    const hotlines = [{ number: '0961 862 450', name: '' }];
+    const hotlines = [{ number: '0943 768 858', name: '' }];
 
     return (
         <div className={cx('wrapper')}>
@@ -33,10 +33,10 @@ const Tophead = () => {
                     </div>
                 </div>
                 <div className={cx('social-icons')}>
-                    <Link to="https://www.facebook.com/profile.php?id=100069322668251">
+                    <Link to="https://www.facebook.com/profile.php?id=100091055392835">
                         <FontAwesomeIcon icon={faFacebookF} />
                     </Link>
-                    <Link to="https://www.youtube.com/@HtxPhunongbuondon">
+                    <Link to="https://www.youtube.com/@ThonTrangLienNhat">
                         <FontAwesomeIcon icon={faYoutube} />
                     </Link>
                 </div>

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash, faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import { getProducts, deleteProduct } from '~/services/productService';
+import { getProducts } from '~/services/productService';
+import { deleteProduct } from '~/services/productApiService';
 import styles from './ProductList.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import routes from '~/config/routes';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);

@@ -12,10 +12,10 @@ import {
     getNavigationLinks,
 } from '~/services/navigationApiService';
 import styles from './EditNavigation.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import routes from '~/config/routes';
-import PushNotification from '~/components/PushNotification';
-import LoadingScreen from '~/components/LoadingScreen';
+import PushNotification from '~/components/PushNotification/PushNotification';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 
 const EditNavigation = () => {
     const { id } = useParams();

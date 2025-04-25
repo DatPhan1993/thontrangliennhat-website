@@ -3,13 +3,13 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { getNewsById, updateNews } from '~/services/newsService';
 import { getCategoriesBySlug } from '~/services/categoryService';
-import CustomEditor from '~/components/CustomEditor';
-import PushNotification from '~/components/PushNotification';
+import CustomEditor from '~/components/CustomEditor/CustomEditor';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import styles from './UpdateNews.module.scss';
 import { useParams, useNavigate } from 'react-router-dom';
-import LoadingScreen from '~/components/LoadingScreen';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 import routes from '~/config/routes';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import { Spin } from 'antd';
 
 const UpdateNews = () => {

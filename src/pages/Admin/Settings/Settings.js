@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getConfiguration, updateConfiguration, getConfigurationMobile } from '~/services/configurationService';
 import { Spin } from 'antd';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import styles from './Settings.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 
 const Settings = () => {
     const [settings, setSettings] = useState({

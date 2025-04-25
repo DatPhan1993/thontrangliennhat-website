@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 import { Link } from 'react-router-dom';
-import Button from '~/components/Button';
+import Button from '~/components/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,7 +18,7 @@ function Product({ image, name, link }) {
                     <h2 className={cx('product-item-name')}>{name}</h2>
 
                     <Button rounded outline rightIcon={<FontAwesomeIcon icon={faChevronRight}/>} className={cx('product-item-button')}>
-                        Xem chi tiết
+                        Giá tiền
                     </Button>
                     
                 </div>

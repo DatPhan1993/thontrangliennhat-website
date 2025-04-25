@@ -23,11 +23,11 @@
     width: 300px;
     transition: all 0.2s ease-in-out;
     color: var(--primary);
+}
 
-    &:focus {
-        outline: none;
-        border: 1px solid var(--primary);
-    }
+.searchInput:focus {
+    outline: none;
+    border: 1px solid var(--primary);
 }
 
 .addButton {
@@ -40,11 +40,11 @@
     text-decoration: none;
     text-align: center;
     transition: all 0.3s ease-in-out;
+}
 
-    &:hover {
-        background-color: transparent;
-        color: var(--primary);
-    }
+.addButton:hover {
+    background-color: transparent;
+    color: var(--primary);
 }
 
 .experienceList {
@@ -56,24 +56,24 @@
     border-collapse: collapse;
     border-radius: 4px;
     overflow: hidden;
+}
 
-    th,
-    td {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        text-align: justify;
-        max-width: 300px;
-        word-wrap: break-word;
-        white-space: normal;
-    }
+.table th,
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: justify;
+    max-width: 300px;
+    word-wrap: break-word;
+    white-space: normal;
+}
 
-    th {
-        background-color: rgba(231, 239, 253, 1);
-    }
+.table th {
+    background-color: rgba(231, 239, 253, 1);
+}
 
-    tr:last-child td {
-        border-bottom: none;
-    }
+.table tr:last-child td {
+    border-bottom: none;
 }
 
 .experienceImage {
@@ -96,12 +96,12 @@
     text-decoration: none;
     text-align: center;
     transition: all 0.3s ease-in-out;
+}
 
-    &:hover {
-        background-color: transparent;
-        border: 1px solid var(--primary);
-        color: var(--primary);
-    }
+.editButton:hover {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
 }
 
 .deleteButton {
@@ -113,11 +113,11 @@
     margin-left: 10px;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+}
 
-    &:hover {
-        background-color: transparent;
-        color: #dc3545;
-    }
+.deleteButton:hover {
+    background-color: transparent;
+    color: #dc3545;
 }
 
 .pagination {
@@ -127,37 +127,35 @@
     margin-top: 20px;
 }
 
-.paginationControls {
-    button {
-        margin-left: 5px;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 4px;
-        background-color: var(--primary);
-        color: #fff;
-        cursor: pointer;
+.paginationControls button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: #fff;
+    cursor: pointer;
+}
 
-        &:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
+.paginationControls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
 
-        &:hover:not(:disabled) {
-            background-color: var(--primary);
-        }
-    }
+.paginationControls button:hover:not(:disabled) {
+    background-color: var(--primary);
 }
 
 .itemsPerPageContainer {
     margin: 20px 0;
     display: flex;
     align-items: center;
+}
 
-    label {
-        margin-right: 10px;
-    }
+.itemsPerPageContainer label {
+    margin-right: 10px;
+}
 
-    .itemsPerPageSelect {
-        padding: 5px;
-    }
+.itemsPerPageContainer .itemsPerPageSelect {
+    padding: 5px;
 }

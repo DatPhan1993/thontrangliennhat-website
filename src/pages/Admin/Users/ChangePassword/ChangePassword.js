@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { changePassword } from '~/services/userService';
 import styles from './ChangePassword.module.scss';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import routes from '~/config/routes';
 import { Spin } from 'antd';
 

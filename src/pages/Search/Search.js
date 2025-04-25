@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import Card from '~/components/CardSearch';
+import CardSearch from '~/components/CardSearch/CardContent';
 import { searchItems } from '~/services/searchService';
 import styles from './Search.module.scss';
-import PushNotification from '~/components/PushNotification';
-import LoadingScreen from '~/components/LoadingScreen';
+import PushNotification from '~/components/PushNotification/PushNotification';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 import routes from '~/config/routes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Empty } from 'antd';
-import Title from 'components/Title';
+import Title from '~/components/Title/Title';
 
 const cx = classNames.bind(styles);
 
@@ -106,7 +106,7 @@ const Search = () => {
                 <div className={cx('search-items')}>
                     {items.map((item, index) => (
                         <Link key={index} to={getLinkByType(item, type)}>
-                            <Card
+                            <CardSearch
                                 title={item.name}
                                 summary={item.summary}
                                 image={item.images[0]}

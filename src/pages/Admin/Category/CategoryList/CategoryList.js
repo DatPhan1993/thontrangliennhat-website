@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash, faAngleRight, faAngleLeft, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { getCategories, deleteCategory } from '~/services/categoryService';
 import styles from './CategoryList.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import routes from '~/config/routes';
 import CATEGORY_TYPES from '~/constants/CategoryType/CategoryType';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 
 const CategoryList = () => {
     const [categories, setCategories] = useState([]);

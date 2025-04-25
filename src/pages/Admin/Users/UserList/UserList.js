@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash, faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import styles from './UserList.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import routes from '~/config/routes';
 import { getUsers, deleteUser, getUserByEmail } from '~/services/userService';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 
 const UserList = () => {
     const [users, setUsers] = useState([]);

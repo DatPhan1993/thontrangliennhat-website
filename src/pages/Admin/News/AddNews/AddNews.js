@@ -3,12 +3,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { createNews } from '~/services/newsService';
 import { getCategoriesBySlug } from '~/services/categoryService';
-import CustomEditor from '~/components/CustomEditor';
-import PushNotification from '~/components/PushNotification';
+import CustomEditor from '~/components/CustomEditor/CustomEditor';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import styles from './AddNews.module.scss';
 import routes from '~/config/routes';
 import { useNavigate } from 'react-router-dom';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import { useDropzone } from 'react-dropzone';
 import { Spin } from 'antd';
 

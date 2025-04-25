@@ -18,26 +18,26 @@ const Footer = () => {
                     <Link to="/">
                         <img src={companyLogo} alt="Company Logo" className={cx('logo')} />
                     </Link>
-                    <h5>HỢP TÁC XÃ PHÚ NÔNG BUÔN ĐÔN</h5>
+                    <h5>HỢP TÁC XÃ LIÊN NHẬT</h5>
                     <div className={cx('contactInfo')}>
                         <div className={cx('contactItem')}>
                             <FontAwesomeIcon icon={faMapMarkerAlt} />
-                            <span>Thôn Tân phú , Xã Ea Nuôl , Huyện Buôn Đôn , Đắk Lắk</span>
+                            <span>TDP Liên Nhật , Phường Thạch Hạ , Thành Phố Hà Tĩnh , Hà Tĩnh</span>
                         </div>
                         <div className={cx('contactItem')}>
                             <FontAwesomeIcon icon={faPhone} />
-                            <span>+84 961 862 450</span>
+                            <span>+84 943 768 858</span>
                         </div>
                         <div className={cx('contactItem')}>
                             <FontAwesomeIcon icon={faEnvelope} />
-                            <span>htxphunong.buondon@gmail.com</span>
+                            <span>thontrangliennhat@gmail.com</span>
                         </div>
                     </div>
                     <div className={cx('socialIcons')}>
-                        <Link to="https://www.facebook.com/profile.php?id=100069322668251">
+                        <Link to="https://www.facebook.com/profile.php?id=100091055392835">
                             <FontAwesomeIcon icon={faFacebook} />
                         </Link>
-                        <Link to="https://www.youtube.com/@HtxPhunongbuondon">
+                        <Link to="https://www.youtube.com/@ThonTrangLienNhat">
                             <FontAwesomeIcon icon={faYoutube} />
                         </Link>
                     </div>
@@ -46,15 +46,9 @@ const Footer = () => {
                     <h4>Thông tin doanh nghiệp</h4>
                     <ul>
                         <li>
-                            <Link to={`${routes.about}/ve-chung-toi`}>
+                            <Link to="/gioi-thieu">
                                 <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
                                 Về chúng tôi
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={`${routes.about}/lich-su`}>
-                                <FontAwesomeIcon className={cx('footer-chevon-icon')} icon={faChevronRight} />
-                                Lịch sử
                             </Link>
                         </li>
                     </ul>
@@ -102,13 +96,13 @@ const Footer = () => {
             </div>
             <div className={cx('bottomBar')}>
                 <p>
-                    Copyright 2024 &copy;{' '}
-                    <a href="https://phunongbuondon.com/" className={cx('company-name')}>
-                        HTX Phú Nông
+                    Copyright 2025 &copy;{' '}
+                    <a href="https://thontrangliennhat.com/" className={cx('company-name')}>
+                        HTX Liên Nhật
                     </a>
                     . All Rights Reserved. Thiết kế bởi{' '}
-                    <a href="https://www.takatech.com.vn/" className={cx('company-design-name')}>
-                        TakaTech
+                    <a href="https://thontrangliennhat.com/" className={cx('company-design-name')}>
+                        DP
                     </a>
                 </p>
             </div>

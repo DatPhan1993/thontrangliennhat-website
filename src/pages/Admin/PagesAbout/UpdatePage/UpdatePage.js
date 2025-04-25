@@ -3,11 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { getPageBySlug, updatePageContent } from '~/services/pageService';
-import CustomEditor from '~/components/CustomEditor';
-import PushNotification from '~/components/PushNotification';
+import CustomEditor from '~/components/CustomEditor/CustomEditor';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import styles from './UpdatePage.module.scss';
 import routes from '~/config/routes';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 
 const UpdatePageSchema = Yup.object({
     name: Yup.string().required('Tên không được để trống'),

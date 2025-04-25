@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, createContext, useCallback } from 'react';
-import { login, logout, refreshAccessToken } from '../services/auth/authService';
+import { login, logout, refreshToken } from '~/services/auth/authService';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
@@ -21,7 +21,7 @@ const useProvideAuth = () => {
     const refreshAccessTokenIfNeeded = useCallback(async () => {
         const refreshToken = localStorage.getItem('refreshToken');
         try {
-            const response = await refreshAccessToken(refreshToken);
+            const response = await refreshToken(refreshToken);
             if (response.statusCode === 200) {
                 const { data } = response;
                 setUser((prevUser) => ({

@@ -7,7 +7,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url('../../../../assets/images/tophead.jpg');
+	background: linear-gradient(to right, var(--gradient-start), var(--gradient-middle1), var(--gradient-middle2), var(--gradient-middle3), var(--gradient-end));
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -27,6 +27,7 @@
 
 		@include respond-to(lg) {
 			width: 100%;
+			padding: 0 20px;
 		}
 
 		.hotline-container {
@@ -41,7 +42,6 @@
 			.hotline {
 				display: flex;
 				align-items: center;
-				animation: slideRightToLeft 10s linear infinite;
 
 				@include respond-to(lg) {
 					flex-direction: row;
@@ -55,6 +55,7 @@
 					align-items: center;
 					color: var(--white);
 					margin-right: 10px;
+					font-weight: 500;
 
 					.phone-icon {
 						margin-right: 5px;
@@ -93,6 +94,9 @@
 		}
 
 		.social-icons {
+			display: flex;
+			align-items: center;
+			
 			@include respond-to(sm) {
 				display: none;
 			}
@@ -100,7 +104,7 @@
 			a {
 				color: var(--white);
 				font-size: 1.8rem;
-				margin-right: 16px;
+				margin-left: 16px;
 				transition: color 0.3s ease;
 
 				@include respond-to(sm) {
@@ -109,7 +113,7 @@
 				}
 
 				&:hover {
-					color: var(--primary);
+					opacity: 0.8;
 				}
 			}
 		}

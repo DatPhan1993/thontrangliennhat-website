@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { addUser } from '~/services/userService';
 import styles from './AddUser.module.scss';
 import routes from '~/config/routes';
-import PushNotification from '~/components/PushNotification';
-import Title from '~/components/Title';
+import PushNotification from '~/components/PushNotification/PushNotification';
+import Title from '~/components/Title/Title';
 import { Spin } from 'antd';
 
 const AddUser = () => {

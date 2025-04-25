@@ -9,9 +9,9 @@ import {
     deleteChildNavigationLink,
 } from '~/services/navigationApiService';
 import styles from './NavigationList.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import routes from '~/config/routes';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 
 const NavigationList = () => {
     const [navigations, setNavigations] = useState([]);

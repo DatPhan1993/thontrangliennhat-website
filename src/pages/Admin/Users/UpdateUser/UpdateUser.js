@@ -5,9 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getUserById, updateUser } from '~/services/userService';
 import styles from './UpdateUser.module.scss';
 import routes from '~/config/routes';
-import LoadingScreen from '~/components/LoadingScreen';
-import PushNotification from '~/components/PushNotification';
-import Title from '~/components/Title';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
+import PushNotification from '~/components/PushNotification/PushNotification';
+import Title from '~/components/Title/Title';
 import { Spin } from 'antd';
 
 const UpdateUser = () => {

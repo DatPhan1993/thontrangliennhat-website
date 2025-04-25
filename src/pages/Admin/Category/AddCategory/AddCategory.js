@@ -3,13 +3,13 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { addCategory } from '~/services/categoryService';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import styles from './AddCategory.module.scss';
 import routes from '~/config/routes';
 import CATEGORY_TYPES from '~/constants/CategoryType/CategoryType';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import { Spin } from 'antd';
-import Button from '~/components/Button';
+import Button from '~/components/Button/Button';
 
 const AddCategory = () => {
     const navigate = useNavigate();

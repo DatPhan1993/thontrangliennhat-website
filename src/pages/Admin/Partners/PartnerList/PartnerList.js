@@ -1,70 +1,67 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash, faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { getPartners, deletePartner } from '~/services/partnerService';
 import styles from './PartnerList.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import routes from '~/config/routes';
-import PushNotification from '~/components/PushNotification';
-import LoadingScreen from '~/components/LoadingScreen';
+import PushNotification from '~/components/PushNotification/PushNotification';
 
 const PartnerList = () => {
     const [partners, setPartners] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
     const [notification, setNotification] = useState({ message: '', type: '' });
 
     useEffect(() => {
+        const fetchPartners = async () => {
+            const data = await getPartners();
+            if (data) {
+                setPartners(data);
+            } else {
+                setNotification({ message: 'Có lỗi khi tải dữ liệu đối tác!', type: 'error' });
+            }
+        };
+
         fetchPartners();
     }, []);
 
-    const fetchPartners = async () => {
-        try {
-            setLoading(true);
-            // TODO: Implement API call to fetch partners
-            const response = await fetch('/api/partners');
-            const data = await response.json();
-            setPartners(data);
-        } catch (error) {
-            console.error('Error fetching partners:', error);
-            setNotification({
-                message: 'Có lỗi xảy ra khi tải danh sách đối tác',
-                type: 'error',
-            });
-        } finally {
-            setLoading(false);
-        }
-    };
-
     const handleDelete = async (id) => {
-        if (window.confirm('Bạn có chắc muốn xóa đối tác này không?')) {
+        if (window.confirm('Bạn có chắc chắn muốn xóa đối tác này?')) {
             try {
-                // TODO: Implement API call to delete partner
-                await fetch(`/api/partners/${id}`, { method: 'DELETE' });
-                setNotification({
-                    message: 'Xóa đối tác thành công',
-                    type: 'success',
-                });
-                fetchPartners();
+                await deletePartner(id);
+                setPartners(partners.filter((partner) => partner._id !== id));
+                setNotification({ message: 'Đối tác đã được xóa thành công!', type: 'success' });
             } catch (error) {
                 console.error('Error deleting partner:', error);
-                setNotification({
-                    message: 'Có lỗi xảy ra khi xóa đối tác',
-                    type: 'error',
-                });
+                setNotification({ message: 'Đã xảy ra lỗi khi xóa đối tác!', type: 'error' });
             }
         }
     };
 
-    if (loading) {
-        return <LoadingScreen />;
-    }
+    const filteredPartners = partners.filter((partner) => partner._id.toString().includes(searchTerm));
+
+    const totalPages = Math.ceil(filteredPartners.length / itemsPerPage);
+    const indexOfLastPartner = currentPage * itemsPerPage;
+    const indexOfFirstPartner = indexOfLastPartner - itemsPerPage;
+    const currentPartners = filteredPartners.slice(indexOfFirstPartner, indexOfLastPartner);
 
     return (
         <div className={styles.partnerContainer}>
-            <Title className={styles.pageTitle} text="Danh sách đối tác" />
+            <Title className={styles.pageTitle} text="Danh sách Đối tác" />
+            {notification.message && <PushNotification message={notification.message} type={notification.type} />}
             <div className={styles.actionsContainer}>
+                <input
+                    type="text"
+                    placeholder="Tìm kiếm Đối tác..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className={styles.searchInput}
+                />
                 <Link to={routes.addPartner} className={styles.addButton}>
-                    <FontAwesomeIcon icon={faPlus} /> Thêm đối tác
+                    <FontAwesomeIcon icon={faPlus} /> Thêm mới Đối tác
                 </Link>
             </div>
 
@@ -72,34 +69,28 @@ const PartnerList = () => {
                 <table className={styles.table}>
                     <thead>
                         <tr>
-                            <th>Tên đối tác</th>
+                            <th>Số thứ tự</th>
                             <th>Logo</th>
-                            <th>Website</th>
+
                             <th>Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {partners.length > 0 ? (
-                            partners.map((partner) => (
-                                <tr key={partner.id}>
-                                    <td>{partner.name}</td>
+                        {currentPartners.length > 0 ? (
+                            currentPartners.map((partner, index) => (
+                                <tr key={partner._id}>
+                                    <td>{index + 1}</td>
                                     <td>
-                                        <img src={partner.logo} alt={partner.name} className={styles.partnerLogo} />
+                                        <img
+                                            src={partner.logo}
+                                            alt={`Partner ${partner.id}`}
+                                            className={styles.partnerImage}
+                                        />
                                     </td>
+
                                     <td>
-                                        <a href={partner.website} target="_blank" rel="noopener noreferrer">
-                                            {partner.website}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <Link
-                                            to={`/admin/edit-partner/${partner.id}`}
-                                            className={styles.editButton}
-                                        >
-                                            <FontAwesomeIcon icon={faEdit} /> Sửa
-                                        </Link>
                                         <button
-                                            onClick={() => handleDelete(partner.id)}
+                                            onClick={() => handleDelete(partner._id)}
                                             className={styles.deleteButton}
                                         >
                                             <FontAwesomeIcon icon={faTrash} /> Xóa
@@ -109,15 +100,53 @@ const PartnerList = () => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4">Không có dữ liệu</td>
+                                <td colSpan="3">Không có dữ liệu</td>
                             </tr>
                         )}
                     </tbody>
                 </table>
             </div>
-            {notification.message && <PushNotification message={notification.message} type={notification.type} />}
+
+            <div className={styles.itemsPerPageContainer}>
+                <label htmlFor="itemsPerPage">Số mục mỗi trang:</label>
+                <select
+                    id="itemsPerPage"
+                    value={itemsPerPage}
+                    onChange={(e) => {
+                        setItemsPerPage(Number(e.target.value));
+                        setCurrentPage(1);
+                    }}
+                    className={styles.itemsPerPageSelect}
+                >
+                    <option value={10}>10</option>
+                    <option value={25}>25</option>
+                    <option value={50}>50</option>
+                    <option value={100}>100</option>
+                </select>
+            </div>
+
+            <div className={styles.pagination}>
+                <span>
+                    Hiện {indexOfFirstPartner + 1} đến {Math.min(indexOfLastPartner, filteredPartners.length)} của{' '}
+                    {filteredPartners.length}
+                </span>
+                <div className={styles.paginationControls}>
+                    <button
+                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        <FontAwesomeIcon icon={faAngleLeft} />
+                    </button>
+                    <button
+                        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                    >
+                        <FontAwesomeIcon icon={faAngleRight} />
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default PartnerList; 
+export default PartnerList;

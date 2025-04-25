@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import DateTime from '~/components/DateTime';
+import DateTime from '~/components/DateTime/DateTime';
 import styles from './SuggestCard.module.scss';
 
 const cx = classNames.bind(styles);

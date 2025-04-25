@@ -3,11 +3,19 @@
 @import '../../styles/_mixins';
 
 :root {
-  --primary: #097829;
-  --secondary: #f55c2d;
-  --white: #fff;
-  --black: #000;
-  --text-color: #000;
+  --primary: #{$primary-color};
+  --secondary: #{$secondary-color};
+  --white: #{$white-color};
+  --black: #{$black-color};
+  --text-color: #{$text-color};
+  
+  // Gradient colors
+  --gradient-start: #{$gradient-start};
+  --gradient-middle1: #{$gradient-middle1};
+  --gradient-middle2: #{$gradient-middle2};
+  --gradient-middle3: #{$gradient-middle3};
+  --gradient-end: #{$gradient-end};
+  
   --font-family: 'Roboto', sans-serif;
   --default-layout-header-height: 200px;
   --default-layout-width: 1200px;

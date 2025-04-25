@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { createProduct } from '~/services/productService';
+import { createProduct } from '~/services/productApiService';
 import { getCategoriesBySlug } from '~/services/categoryService';
-import CustomEditor from '~/components/CustomEditor';
-import PushNotification from '~/components/PushNotification';
+import CustomEditor from '~/components/CustomEditor/CustomEditor';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import { useDropzone } from 'react-dropzone';
 import styles from './AddProduct.module.scss';
 import { useNavigate } from 'react-router-dom';
 import routes from '~/config/routes';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Spin } from 'antd';
-import Button from 'components/Button';
+import Button from '~/components/Button/Button';
 
 const AddProduct = () => {
     const [categories, setCategories] = useState([]);

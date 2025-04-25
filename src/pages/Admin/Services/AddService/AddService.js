@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { createService } from '~/services/serviceService';
-import CustomEditor from '~/components/CustomEditor';
-import PushNotification from '~/components/PushNotification';
+import CustomEditor from '~/components/CustomEditor/CustomEditor';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import styles from './AddService.module.scss';
 import routes from '~/config/routes';
 import { useNavigate } from 'react-router-dom';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import { useDropzone } from 'react-dropzone';
 import { Spin } from 'antd';
-import { getCategoriesBySlug } from 'services/categoryService';
+import { getCategories } from '~/services/categoryService';
 
 const AddService = () => {
     const [categories, setCategories] = useState([]);
@@ -38,7 +38,7 @@ const AddService = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const fetchedCategories = await getCategoriesBySlug('dich-vu');
+                const fetchedCategories = await getCategories('dich-vu');
                 setCategories(fetchedCategories);
             } catch (error) {
                 console.error('Lỗi khi tải danh mục:', error);

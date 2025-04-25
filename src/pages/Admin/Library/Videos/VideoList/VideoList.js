@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faAngleLeft, faAngleRight, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { deleteVideo, getVideos } from '~/services/libraryService';
 import styles from './VideoList.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import { Link } from 'react-router-dom';
 import routes from '~/config/routes';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 
 const VideoList = () => {
     const [videos, setVideos] = useState([]);

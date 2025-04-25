@@ -3,16 +3,17 @@ import { useLocation } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { getServiceByCategory } from '~/services/serviceService';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import styles from './ServiceCategory.module.scss';
 import { Link } from 'react-router-dom';
-import CardService from '~/components/CardService';
-import { getCategoriesBySlug } from '~/services/categoryService';
+import CardService from '~/components/CardService/CardService';
 import routes from '~/config/routes';
 import { Helmet } from 'react-helmet';
-import LoadingScreen from '~/components/LoadingScreen';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 import { Empty } from 'antd';
+// Import local data instead of using API
+import { servicesData } from '~/data/services';
+import { categoriesData } from '~/data/categories';
 
 const cx = classNames.bind(styles);
 
@@ -33,40 +34,40 @@ function ServiceCategory() {
     const slug = extractSlugFromPathname(location.pathname);
 
     useEffect(() => {
-        async function fetchCategory() {
-            try {
-                const categories = await getCategoriesBySlug('dich-vu');
-                const category = categories.find((cat) => cat.slug === slug);
-                if (category) {
-                    setCategoryId(category.id);
-                    setCategoryName(category.title);
-                }
-            } catch (error) {
-                console.error('Error fetching categories:', error);
+        // Find category by slug from local data
+        const findCategory = () => {
+            const category = categoriesData.find((cat) => cat.slug === slug);
+            if (category) {
+                setCategoryId(category.id);
+                setCategoryName(category.title);
             }
-        }
+        };
 
         if (slug) {
-            fetchCategory();
+            findCategory();
         }
     }, [slug]);
 
     useEffect(() => {
-        async function fetchServiceCategory() {
+        // Filter services by category from local data
+        const fetchServicesByCategory = () => {
             if (categoryId) {
                 setLoading(true);
                 try {
-                    const data = await getServiceByCategory(categoryId);
-                    setService(data);
+                    // Filter services by category ID
+                    const filteredServices = servicesData.filter(
+                        (service) => service.categoryId === categoryId
+                    );
+                    setService(filteredServices);
                 } catch (error) {
-                    console.error('Error fetching service:', error);
+                    console.error('Error filtering services:', error);
                 } finally {
                     setLoading(false);
                 }
             }
-        }
+        };
 
-        fetchServiceCategory();
+        fetchServicesByCategory();
     }, [categoryId]);
 
     const indexOfLastService = currentPage * servicePerPage;
@@ -129,7 +130,7 @@ function ServiceCategory() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{categoryName} | HTX Nông Nghiệp - Du Lịch Phú Nông Buôn Đôn</title>
+                <title>{categoryName} | HTX Nông Nghiệp - Du Lịch Phú Nông Liên Nhật</title>
                 <meta
                     name="description"
                     content={`Xem các dịch vụ du lịch liên quan đến ${categoryName} trên HTX Nông Nghiệp - Du Lịch Phú Nông Buôn.`}

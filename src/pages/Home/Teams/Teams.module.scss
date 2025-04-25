@@ -25,14 +25,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
+    gap: 80px;
+    margin-top: 60px;
 }
 
 .member-card {
     width: 230px;
     text-align: center;
     transition: transform 0.3s ease;
+    cursor: pointer;
     
     &:hover {
         transform: translateY(-5px);
@@ -45,11 +46,12 @@
 }
 
 .member-avatar-container {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 15px;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
     border-radius: 50%;
     overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .member-avatar {
@@ -57,18 +59,18 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid #e0e0e0;
+    border: 4px solid #e0e0e0;
     transition: all 0.3s ease;
 }
 
 .member-name {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--primary);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .member-position {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #666;
 }

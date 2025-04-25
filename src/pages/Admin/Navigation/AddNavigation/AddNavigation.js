@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styles from './AddNavigation.module.scss';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import {
     getSubNavigation,
     getMainNavigation,
@@ -12,8 +12,9 @@ import {
 } from '~/services/navigationApiService';
 import routes from '~/config/routes';
 import { Link, useNavigate } from 'react-router-dom';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import { Spin } from 'antd';
+import { getNavigationLinks, createNavigationLink } from '~/services/navigationService';
 
 const AddNavigation = () => {
     const [isError, setIsError] = useState(false);

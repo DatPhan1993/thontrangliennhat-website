@@ -1,33 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, Spin } from 'antd';
+import { Menu } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDot } from '@fortawesome/free-solid-svg-icons';
-import { useBaseRoute } from '~/context/BaseRouteContext/BaseRouteContext';
+import { useBaseRoute } from '~/context/BaseRouteContext';
 import { Link, useLocation } from 'react-router-dom';
-import { getCategoriesBySlug } from './services/categoryService/categoryService';
+import { categoriesData } from '~/data/categories';
+import routes from '~/config/routes';
 
 function SideBar({ categoryType }) {
-    const [categoriesData, setCategoriesData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [categoriesFiltered, setCategoriesFiltered] = useState([]);
     const baseRoute = useBaseRoute();
     const location = useLocation();
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
-        async function fetchCategoryData() {
-            try {
-                const data = await getCategoriesBySlug(categoryType);
-                setCategoriesData(data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching category data:', error);
-                setError(error);
-                setLoading(false);
-            }
-        }
-
-        fetchCategoryData();
+        // Filter categories based on categoryType if needed
+        setCategoriesFiltered(categoriesData);
     }, [categoryType]);
 
     useEffect(() => {
@@ -53,28 +41,22 @@ function SideBar({ categoryType }) {
     });
 
     const renderMenuItems = () => {
-        if (loading) {
-            return (
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '100%',
-                        minHeight: '100px',
-                    }}
-                >
-                    <Spin size="small" />
-                </div>
-            );
+        if (!categoriesFiltered || categoriesFiltered.length === 0) {
+            return null;
         }
 
-        if (error || !categoriesData) {
-            return <div>Error loading data</div>;
-        }
-
-        return categoriesData.map((category) => {
+        return categoriesFiltered.map((category) => {
             const isActive = location.pathname.includes(category.slug);
+            
+            // Determine the correct link prefix based on category type
+            let linkPrefix;
+            if (categoryType === 'dich-vu') {
+                linkPrefix = routes.services;
+            } else if (categoryType === 'trai-nghiem') {
+                linkPrefix = routes.experiences;
+            } else {
+                linkPrefix = baseRoute;
+            }
 
             if (category.children && category.children.length > 0) {
                 return (
@@ -93,7 +75,7 @@ function SideBar({ categoryType }) {
                             return (
                                 <Menu.Item key={subcategory.id}>
                                     <Link
-                                        to={`${baseRoute}/${subcategory.slug}`}
+                                        to={`${linkPrefix}/${subcategory.slug}`}
                                         style={getTextStyle(subcategoryActive)}
                                     >
                                         <FontAwesomeIcon icon={faCircleDot} style={getIconStyle(subcategoryActive)} />
@@ -108,7 +90,7 @@ function SideBar({ categoryType }) {
 
             return (
                 <Menu.Item key={category.id}>
-                    <Link to={`${baseRoute}/${category.slug}`} style={getTextStyle(isActive)}>
+                    <Link to={`${linkPrefix}/${category.slug}`} style={getTextStyle(isActive)}>
                         <FontAwesomeIcon icon={faCircleDot} style={getIconStyle(isActive)} />
                         {category.title}
                     </Link>

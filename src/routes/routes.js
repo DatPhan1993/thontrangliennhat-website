@@ -36,7 +36,7 @@ import UpdateNews from '~/pages/Admin/News/UpdateNews/UpdateNews';
 import ServiceList from '~/pages/Admin/Services/ServiceList/ServiceList';
 import AddService from '~/pages/Admin/Services/AddService/AddService';
 import UpdateService from '~/pages/Admin/Services/UpdateService/UpdateService';
-import PartnerList from '~/pages/Admin/Partners/ParnerList/PartnerList';
+import PartnerList from '~/pages/Admin/Partners/PartnerList/PartnerList';
 import AddPartner from '~/pages/Admin/Partners/AddPartner/AddPartner';
 import UserList from '~/pages/Admin/Users/UserList/UserList';
 import AddUser from '~/pages/Admin/Users/AddUser/AddUser';
@@ -68,6 +68,7 @@ import UpdateExperience from '~/pages/Admin/Experiences/UpdateExperience/UpdateE
 import MemberList from '~/pages/Admin/Team/MemberList/MemberList';
 import AddMember from '~/pages/Admin/Team/AddMember/AddMember';
 import UpdateMember from '~/pages/Admin/Team/UpdateMember/UpdateMember';
+import MenuPage from '~/pages/Menu/Menu';
 
 // Create a simple NothingLayout component
 const NothingLayout = ({ children }) => children;
@@ -91,6 +92,7 @@ const publicRoutes = [
     },
     { path: config.routes.products, component: Product, layout: OnlyHeaderLayout },
     { path: config.routes.productDetail, component: ProductDetail, layout: OnlyHeaderLayout },
+    { path: config.routes.menu, component: MenuPage, layout: OnlyHeaderLayout },
     {
         path: config.routes.introduction,
         component: Introduction,

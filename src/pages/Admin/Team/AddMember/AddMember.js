@@ -3,10 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { addMember } from '~/services/teamService';
-import PushNotification from '~/components/PushNotification';
+import PushNotification from '~/components/PushNotification/PushNotification';
 import styles from './AddMember.module.scss';
 import routes from '~/config/routes';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import { useDropzone } from 'react-dropzone';
 
 const AddMember = () => {

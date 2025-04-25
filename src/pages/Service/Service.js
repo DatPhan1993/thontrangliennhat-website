@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import CardService from 'components/CardService/CardService';
-// import SuggestCard from '~/components/SuggestCard/SuggestCard';
-import { getServiceByCategory } from '~/services/serviceService';
+import CardService from '~/components/CardService/CardService';
+import { servicesData } from '~/data/services';
+import { categoriesData } from '~/data/categories'; // Import danh mục từ data local
 import styles from './Service.module.scss';
 import Title from '~/components/Title/Title';
-// import ButtonGroup from '~/components/ButtonGroup/ButtonGroup';
 import PushNotification from '~/components/PushNotification/PushNotification';
 import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 import routes from '~/config/routes';
-import { getCategoriesBySlug } from 'services/categoryService';
+// import { getCategoriesBySlug } from '~/services/categoryService'; // Không dùng API nữa
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -20,73 +19,46 @@ import { Helmet } from 'react-helmet';
 const cx = classNames.bind(styles);
 
 const Service = () => {
-    // const [serviceItems, setServiceItems] = useState([]);
     const [categories, setCategories] = useState([]);
     const [groupedService, setGroupedService] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    // const [selectedSuggestion, setSelectedSuggestion] = useState(0);
 
     useEffect(() => {
-        const fetchCategoriesAndService = async () => {
-            try {
-                const categoriesData = await getCategoriesBySlug('dich-vu');
-                setCategories(categoriesData);
+        try {
+            // Sử dụng trực tiếp dữ liệu từ categoriesData
+            setCategories(categoriesData);
 
-                const groupedServiceMap = {};
-
-                await Promise.all(
-                    categoriesData.map(async (category) => {
-                        const serviceData = await getServiceByCategory(category.id);
-                        groupedServiceMap[category.id] = serviceData.map((item) => ({
-                            ...item,
-                            image: item.images,
-                        }));
-                    }),
+            const groupedServiceMap = {};
+            
+            // Nhóm dịch vụ theo danh mục sử dụng dữ liệu local
+            categoriesData.forEach(category => {
+                const servicesByCategory = servicesData.filter(service => 
+                    service.categoryId === category.id
                 );
+                
+                groupedServiceMap[category.id] = servicesByCategory.map(item => ({
+                    ...item,
+                    image: item.images,
+                }));
+            });
 
-                setGroupedService(groupedServiceMap);
-                // setServiceItems(Object.values(groupedServiceMap).flat());
-            } catch (error) {
-                setError(error);
-                console.error('Error fetching service:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCategoriesAndService();
+            setGroupedService(groupedServiceMap);
+            setLoading(false);
+        } catch (error) {
+            setError(error);
+            console.error('Error processing service data:', error);
+            setLoading(false);
+        }
     }, []);
 
-    // const handleButtonClick = (index) => {
-    //     setSelectedSuggestion(index);
-    // };
-
-    // const getCategorySlug = (categoryId) => {
-    //     const category = categories.find((category) => categoryId === category.id);
-    //     return category ? category.slug : '';
-    // };
-
     if (error) {
-        const errorMessage = error.response ? error.response.data.message : 'Network Error';
-        return <PushNotification message={errorMessage} />;
+        return <PushNotification message="Có lỗi xảy ra khi tải dữ liệu dịch vụ" />;
     }
 
     if (loading) {
         return <LoadingScreen isLoading={loading} />;
     }
-
-    // const filteredServiceItems = serviceItems
-    //     .filter((item) => {
-    //         if (selectedSuggestion === 0) {
-    //             return item.isFeatured;
-    //         }
-    //         if (selectedSuggestion === 1) {
-    //             return item.views > 10;
-    //         }
-    //         return true;
-    //     })
-    //     .slice(0, 5);
 
     return (
         <article className={cx('wrapper')}>
@@ -155,23 +127,6 @@ const Service = () => {
                         );
                     })}
                 </div>
-                {/* <div className={cx('suggest')}>
-                    <h2 className={cx('suggest-title')}>Có thể bạn quan tâm</h2>
-                    <ButtonGroup buttons={['Nổi bật', 'Xem nhiều']} onButtonClick={handleButtonClick} />
-                    <div className={cx('suggest-items')}>
-                        {filteredServiceItems.map((item, index) => (
-                            <Link key={index} to={`${routes.services}/${getCategorySlug(item.categoryId)}/${item.id}`}>
-                                <SuggestCard
-                                    title={item.title}
-                                    summary={item.summary}
-                                    image={item.images}
-                                    createdAt={item.createdAt}
-                                    views={item.views}
-                                />
-                            </Link>
-                        ))}
-                    </div>
-                </div> */}
             </div>
         </article>
     );

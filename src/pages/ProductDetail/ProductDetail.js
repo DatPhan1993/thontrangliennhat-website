@@ -5,169 +5,77 @@ import styles from './ProductDetail.module.scss';
 import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 import PushNotification from '~/components/PushNotification/PushNotification';
 import Title from '~/components/Title/Title';
-import { getProductById } from '~/services/productService';
 import { Helmet } from 'react-helmet';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faChevronDown,
-    faChevronLeft,
-    faChevronRight,
-    faChevronUp,
-    faCircleDot,
-    faPhone,
-} from '@fortawesome/free-solid-svg-icons';
-import Button from 'components/Button/Button';
+import ProductVariant from '~/components/ProductVariant/ProductVariant';
+import { productsData } from '~/data/products';
+import { productVariants } from '~/data/productVariants';
 
 const cx = classNames.bind(styles);
 
 const ProductDetail = () => {
-    const { slug } = useParams();
-    const [productDetail, setProductDetail] = useState(null);
+    const { slug, id } = useParams();
+    const [product, setProduct] = useState(null);
+    const [variants, setVariants] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
 
     useEffect(() => {
-        const fetchProductDetail = async () => {
-            try {
-                const data = await getProductById(slug);
-                setProductDetail(data);
-                console.log(data);
-            } catch (error) {
-                setError(error);
-                console.error('Error fetching product detail:', error);
-            } finally {
-                setLoading(false);
+        try {
+            // Find the product by ID from static data
+            const foundProduct = productsData.find(p => p.id === parseInt(id));
+            
+            if (!foundProduct) {
+                throw new Error(`Không tìm thấy sản phẩm với ID: ${id}`);
             }
-        };
-
-        fetchProductDetail();
-    }, [slug]);
-
-    const handleThumbnailClick = (index) => {
-        setCurrentImageIndex(index);
-    };
-
-    const handlePrevClick = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? productDetail.images.length - 1 : prevIndex - 1));
-    };
-
-    const handleNextClick = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex === productDetail.images.length - 1 ? 0 : prevIndex + 1));
-    };
-
-    const handleThumbnailPrevClick = () => {
-        setThumbnailStartIndex((prevIndex) => Math.max(0, prevIndex - 1));
-    };
-
-    const handleThumbnailNextClick = () => {
-        const totalImages = productDetail.images.length;
-        const remainingImages = totalImages - (thumbnailStartIndex + 1);
-        if (remainingImages > 0) {
-            setThumbnailStartIndex((prevIndex) => prevIndex + 1);
-        } else {
-            setThumbnailStartIndex((prevIndex) => prevIndex + remainingImages);
+            
+            setProduct(foundProduct);
+            
+            // Get product variants from product slug
+            const productSlug = foundProduct.slug;
+            const foundVariants = productVariants[productSlug] || [];
+            setVariants(foundVariants);
+            setLoading(false);
+        } catch (error) {
+            setError(error);
+            console.error('Lỗi khi tìm thông tin sản phẩm:', error);
+            setLoading(false);
         }
-    };
+    }, [id]);
 
     if (error) {
-        const errorMessage = error.response ? error.response.data.message : 'Network Error';
-        return <PushNotification message={errorMessage} />;
+        return <PushNotification message={error.message} />;
     }
 
     if (loading) {
         return <LoadingScreen isLoading={loading} />;
     }
 
-    const features = productDetail.features ? JSON.parse(productDetail.features) : [];
-
     return (
         <article className={cx('wrapper')}>
             <Helmet>
-                <title>{productDetail.name} | HTX Nông Nghiệp - Dịch Vụ Tổng Hợp Liên Nhật</title>
-                <meta name="description" content={`Chi tiết về sản phẩm: ${productDetail.name}.`} />
-                <meta name="keywords" content={`sản phẩm, ${productDetail.name}, thontrangliennhat`} />
+                <title>{product.name} | HTX Nông Nghiệp - Dịch Vụ Tổng Hợp Liên Nhật</title>
+                <meta name="description" content={`Các món ăn làm từ ${product.name}.`} />
+                <meta name="keywords" content={`món ăn, ${product.name}, thontrangliennhat`} />
             </Helmet>
 
-            <div className={cx('product-section')}>
-                <div className={cx('thumbnails')}>
-                    {thumbnailStartIndex > 0 && (
-                        <button
-                            className={cx('thumbnail-button', 'thumbnail-prev-button')}
-                            onClick={handleThumbnailPrevClick}
-                        >
-                            <FontAwesomeIcon icon={faChevronUp} />
-                        </button>
-                    )}
-                    <div
-                        className={cx('thumbnail-list')}
-                        style={{ transform: `translateY(-${thumbnailStartIndex * 155}px)` }}
-                    >
-                        {productDetail.images
-                            .slice(thumbnailStartIndex, thumbnailStartIndex + 4)
-                            .map((image, index) => (
-                                <div key={thumbnailStartIndex + index} className={cx('thumbnail-item')}>
-                                    <img
-                                        className={cx('thumbnail-image')}
-                                        src={image.replace(/\\/g, '')}
-                                        alt={`${productDetail.name} thumbnail ${thumbnailStartIndex + index + 1}`}
-                                        onClick={() => handleThumbnailClick(thumbnailStartIndex + index)}
-                                    />
-                                </div>
-                            ))}
-                    </div>
-                    {thumbnailStartIndex + 4 < productDetail.images.length && (
-                        <button
-                            className={cx('thumbnail-button', 'thumbnail-next-button')}
-                            onClick={handleThumbnailNextClick}
-                        >
-                            <FontAwesomeIcon icon={faChevronDown} />
-                        </button>
-                    )}
-                </div>
+            <Title text={`Các món ăn từ ${product.name}`} />
 
-                <div className={cx('product-image')}>
-                    <button className={cx('prev-button')} onClick={handlePrevClick}>
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </button>
-                    <div
-                        className={cx('main-image-wrapper')}
-                        style={{ transform: `translateX(-${currentImageIndex * 600}px)` }}
-                    >
-                        {productDetail.images.map((image, index) => (
-                            <img
-                                key={index}
-                                className={cx('main-image')}
-                                src={image.replace(/\\/g, '')}
-                                alt={`${productDetail.name} main ${index + 1}`}
-                            />
-                        ))}
+            <div className={cx('variants-container')}>
+                {variants.length > 0 ? (
+                    variants.map(variant => (
+                        <ProductVariant
+                            key={variant.id}
+                            image={variant.image}
+                            name={variant.name}
+                            price={variant.price}
+                            description={variant.description}
+                        />
+                    ))
+                ) : (
+                    <div className={cx('no-variants')}>
+                        <p>Đang cập nhật các món ăn từ {product.name}...</p>
                     </div>
-                    <button className={cx('next-button')} onClick={handleNextClick}>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
-                </div>
-                <div className={cx('product-details')}>
-                    <h2 className={cx('product-name')}>{productDetail.name}</h2>
-                    <ul className={cx('detail-function')}>
-                        {/* <h4 className={cx('title-function')}>Thông tin tổng quan:</h4> */}
-                        {features.map((feature, index) => (
-                            <li key={index} className={cx('txt-function')}>
-                                <FontAwesomeIcon className={cx('icon-function')} icon={faCircleDot} /> {feature}
-                            </li>
-                        ))}
-                    </ul>
-                    <Button className={cx('contact-button')} primary>
-                        <FontAwesomeIcon icon={faPhone} className={cx('icon')} />
-                        <a href={`tel:${productDetail.phone_number}`}>Liên hệ ngay ({productDetail.phone_number})</a>
-                    </Button>
-                </div>
-            </div>
-
-            <div className={cx('info-section')}>
-                <Title text="Chi tiết sản phẩm" />
-                <div className={cx('info-content')} dangerouslySetInnerHTML={{ __html: productDetail.content || '' }} />
+                )}
             </div>
         </article>
     );

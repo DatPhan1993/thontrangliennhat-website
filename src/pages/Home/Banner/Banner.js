@@ -31,51 +31,53 @@ const Banner = () => {
 
     return (
         <div className={cx('banner')}>
-            <div className={cx('inner')}>
-                <Swiper
-                    spaceBetween={0}
-                    slidesPerView={1}
-                    loop={true}
-                    modules={[Autoplay, Navigation, EffectFade]}
-                    effect="fade"
-                    fadeEffect={{ crossFade: true }}
-                    autoplay={{
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    }}
-                    speed={1500}
-                    navigation={{
-                        nextEl: `.${cx('swiper-button-next')}`,
-                        prevEl: `.${cx('swiper-button-prev')}`,
-                    }}
-                    observer={true}
-                    observeParents={true}
-                    className={cx('swiper')}
-                    onResize={(swiper) => {
-                        // Đảm bảo tỷ lệ khung hình đúng sau khi resize
-                        swiper.update();
-                    }}
-                >
-                    {slides.map((slide, index) => (
-                        <SwiperSlide key={index} className={cx('slide')}>
-                            <div className={cx('image-card')}>
-                                <img 
-                                    src={slide.image} 
-                                    alt={`slider-${index + 1}`} 
-                                    className={cx('image')} 
-                                    width="1600" 
-                                    height="512"
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                    <div className={cx('swiper-button-prev')}>
-                        <FontAwesomeIcon icon={faChevronLeft} className={cx('swiper-icon')} />
-                    </div>
-                    <div className={cx('swiper-button-next')}>
-                        <FontAwesomeIcon icon={faChevronRight} className={cx('swiper-icon')} />
-                    </div>
-                </Swiper>
+            <div className={cx('container')}>
+                <div className={cx('inner')}>
+                    <Swiper
+                        spaceBetween={0}
+                        slidesPerView={1}
+                        loop={true}
+                        modules={[Autoplay, Navigation, EffectFade]}
+                        effect="fade"
+                        fadeEffect={{ crossFade: true }}
+                        autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        }}
+                        speed={1500}
+                        navigation={{
+                            nextEl: `.${cx('swiper-button-next')}`,
+                            prevEl: `.${cx('swiper-button-prev')}`,
+                        }}
+                        observer={true}
+                        observeParents={true}
+                        className={cx('swiper')}
+                        onResize={(swiper) => {
+                            // Đảm bảo tỷ lệ khung hình đúng sau khi resize
+                            swiper.update();
+                        }}
+                    >
+                        {slides.map((slide, index) => (
+                            <SwiperSlide key={index} className={cx('slide')}>
+                                <div className={cx('image-card')}>
+                                    <img 
+                                        src={slide.image} 
+                                        alt={`slider-${index + 1}`} 
+                                        className={cx('image')} 
+                                        width="1200" 
+                                        height="450"
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                        <div className={cx('swiper-button-prev')}>
+                            <FontAwesomeIcon icon={faChevronLeft} className={cx('swiper-icon')} />
+                        </div>
+                        <div className={cx('swiper-button-next')}>
+                            <FontAwesomeIcon icon={faChevronRight} className={cx('swiper-icon')} />
+                        </div>
+                    </Swiper>
+                </div>
             </div>
         </div>
     );

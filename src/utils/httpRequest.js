@@ -14,7 +14,7 @@ const getSecureUrl = (url) => {
 // Tạo axios instance
 const httpRequest = axios.create({
     baseURL: getSecureUrl(BASE_URL),
-    timeout: 10000, // 10s timeout
+    timeout: 30000, // tăng timeout lên 30s
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -49,11 +49,25 @@ httpRequest.interceptors.response.use(
     (error) => {
         // Xử lý lỗi phản hồi
         console.error('Response error:', error?.response?.status, error?.message);
+        
+        // Xử lý lỗi SSL
+        if (error.code === 'ERR_SSL_PROTOCOL_ERROR' || error.code === 'CERT_HAS_EXPIRED' || 
+            error.message.includes('SSL') || error.message.includes('certificate')) {
+            console.error('SSL Error occurred:', error.message);
+            // Có thể thử lại với một axios instance khác không có SSL
+        }
+        
         // Kiểm tra nếu là lỗi 401 - Unauthorized
         if (error?.response?.status === 401) {
             // Có thể xử lý logout hoặc refresh token tại đây
             localStorage.removeItem('accessToken');
         }
+        
+        // Nếu không có phản hồi (mạng bị ngắt) hoặc lỗi mạng khác
+        if (!error.response) {
+            console.error('Network error - no response:', error.message);
+        }
+        
         return Promise.reject(error);
     }
 );
@@ -65,6 +79,16 @@ export const get = async (path, options = {}) => {
         return response.data;
     } catch (error) {
         console.error(`GET error for ${path}:`, error?.message);
+        // Xử lý lỗi cụ thể
+        if (error.code === 'ERR_SSL_PROTOCOL_ERROR' || error.code === 'CERT_HAS_EXPIRED' || 
+            error.message.includes('SSL') || error.message.includes('certificate')) {
+            // Trả về dữ liệu từ cache nếu có
+            const cachedData = sessionStorage.getItem(path);
+            if (cachedData) {
+                console.log('Using cached data for', path);
+                return JSON.parse(cachedData);
+            }
+        }
         throw error;
     }
 };

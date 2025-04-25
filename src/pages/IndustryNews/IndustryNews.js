@@ -15,7 +15,7 @@ import dayjs from 'dayjs';
 import { DatePicker, Space, Button, Empty } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
 import 'moment/locale/vi';
-import LoadingScreen from 'components/LoadingScreen/LoadingScreen';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 
 const { RangePicker } = DatePicker;
 
@@ -171,10 +171,10 @@ function NewsCategory() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{categoryName} | HTX Nông Nghiệp - Du Lịch Phú Nông Buôn Đôn</title>
+                <title>{categoryName} | HTX Nông Nghiệp - Du Lịch Phú Nông Liên Nhật</title>
                 <meta
                     name="description"
-                    content={`Xem các tin tức liên quan đến ${categoryName} trên HTX Nông Nghiệp - Du Lịch Phú Nông Buôn Đôn.`}
+                    content={`Xem các tin tức liên quan đến ${categoryName} trên HTX Nông Nghiệp - Du Lịch Phú Nông Liên Nhật.`}
                 />
                 <meta
                     name="keywords"

@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import classNames from 'classnames/bind';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 import styles from './OnlyHeaderLayout.module.scss';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -43,16 +43,16 @@ function OnlyHeaderLayout({ children }) {
             </div>
             <Footer />
             <div className={cx('contact-buttons')}>
-                    <div className={cx('button', 'hotline')} onClick={() => (window.location.href = 'tel:0961862450')}>
+                    <div className={cx('button', 'hotline')} onClick={() => (window.location.href = 'tel:0943768858')}>
                         <FontAwesomeIcon icon={faPhone} />
                     </div>
                     <div
                         className={cx('button', 'zalo')}
-                        onClick={() => (window.location.href = 'https://zalo.me/0961862450')}
+                        onClick={() => (window.location.href = 'https://zalo.me/0943768858')}
                     ></div>
                     <div
                         className={cx('button', 'facebook')}
-                        onClick={() => (window.location.href = 'https://www.facebook.com/profile.php?id=100069322668251')}
+                        onClick={() => (window.location.href = 'https://www.facebook.com/profile.php?id=100091055392835')}
                     >
                         <FontAwesomeIcon icon={faFacebookF} />
                     </div>

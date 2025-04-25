@@ -7,8 +7,8 @@
       "role": "admin",
       "name": "Administrator",
       "avatar": "https://i.pravatar.cc/150?img=1",
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": 2,
@@ -17,8 +17,8 @@
       "role": "user",
       "name": "Normal User",
       "avatar": "https://i.pravatar.cc/150?img=2",
-      "createdAt": "2023-01-02T00:00:00.000Z",
-      "updatedAt": "2023-01-02T00:00:00.000Z"
+      "createdAt": "2024-01-02T00:00:00.000Z",
+      "updatedAt": "2024-01-02T00:00:00.000Z"
     }
   ],
   "navigation": [
@@ -189,8 +189,8 @@
       "type": "san-pham",
       "description": "Các sản phẩm nông sản tươi sạch",
       "image": "https://placehold.co/600x400/png",
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": 2,
@@ -199,8 +199,8 @@
       "type": "san-pham",
       "description": "Các đặc sản của địa phương",
       "image": "https://placehold.co/600x400/png",
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": 3,
@@ -209,8 +209,8 @@
       "type": "dich-vu",
       "description": "Dịch vụ du lịch sinh thái",
       "image": "https://placehold.co/600x400/png",
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": 4,
@@ -219,8 +219,8 @@
       "type": "dich-vu",
       "description": "Dịch vụ tham quan làng nghề truyền thống",
       "image": "https://placehold.co/600x400/png",
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": 5,
@@ -229,8 +229,8 @@
       "type": "tin-tuc",
       "description": "Tin tức về hoạt động của HTX",
       "image": "https://placehold.co/600x400/png",
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": 6,
@@ -239,8 +239,8 @@
       "type": "tin-tuc",
       "description": "Tin tức về ngành nông nghiệp và du lịch",
       "image": "https://placehold.co/600x400/png",
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
     }
   ],
   "products": [
@@ -248,16 +248,16 @@
       "id": 1,
       "name": "Mật ong rừng nguyên chất",
       "slug": "mat-ong-rung-nguyen-chat",
-      "summary": "Mật ong rừng nguyên chất từ Buôn Đôn",
-      "description": "<p>Mật ong rừng nguyên chất được khai thác tại rừng nguyên sinh Buôn Đôn, đảm bảo chất lượng và hương vị tự nhiên.</p>",
+      "summary": "Mật ong rừng nguyên chất từ Liên Nhật",
+      "description": "<p>Mật ong rừng nguyên chất được khai thác tại rừng nguyên sinh Liên Nhật, đảm bảo chất lượng và hương vị tự nhiên.</p>",
       "price": 350000,
       "discountPrice": 320000,
       "images": "https://placehold.co/600x400/png",
       "categoryId": 1,
       "isFeatured": true,
       "views": 125,
-      "createdAt": "2023-01-15T00:00:00.000Z",
-      "updatedAt": "2023-02-01T00:00:00.000Z"
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-02-01T00:00:00.000Z"
     },
     {
       "id": 2,
@@ -271,40 +271,40 @@
       "categoryId": 2,
       "isFeatured": true,
       "views": 98,
-      "createdAt": "2023-01-20T00:00:00.000Z",
-      "updatedAt": "2023-02-05T00:00:00.000Z"
+      "createdAt": "2024-01-20T00:00:00.000Z",
+      "updatedAt": "2024-02-05T00:00:00.000Z"
     },
     {
       "id": 3,
-      "name": "Gạo nếp Buôn Đôn",
+      "name": "Gạo nếp Liên Nhật",
       "slug": "gao-nep-buon-don",
-      "summary": "Gạo nếp đặc sản vùng Buôn Đôn",
-      "description": "<p>Gạo nếp Buôn Đôn được trồng theo phương pháp canh tác truyền thống, hạt gạo dẻo, thơm, đặc trưng của vùng đất Tây Nguyên.</p>",
+      "summary": "Gạo nếp đặc sản vùng Liên Nhật",
+      "description": "<p>Gạo nếp Liên Nhật được trồng theo phương pháp canh tác truyền thống, hạt gạo dẻo, thơm, đặc trưng của vùng đất Tây Nguyên.</p>",
       "price": 120000,
       "discountPrice": 110000,
       "images": "https://placehold.co/600x400/png",
       "categoryId": 1,
       "isFeatured": false,
       "views": 75,
-      "createdAt": "2023-02-10T00:00:00.000Z",
-      "updatedAt": "2023-02-15T00:00:00.000Z"
+      "createdAt": "2024-02-10T00:00:00.000Z",
+      "updatedAt": "2024-02-15T00:00:00.000Z"
     }
   ],
   "services": [
     {
       "id": 1,
-      "name": "Tour du lịch sinh thái rừng Buôn Đôn",
+      "name": "Tour du lịch sinh thái rừng Liên Nhật",
       "slug": "tour-du-lich-sinh-thai-rung-buon-don",
-      "summary": "Khám phá vẻ đẹp hoang sơ của rừng Buôn Đôn",
-      "description": "<p>Tour du lịch sinh thái rừng Buôn Đôn giúp du khách khám phá vẻ đẹp hoang sơ của rừng nguyên sinh, trải nghiệm cuộc sống của đồng bào dân tộc và thưởng thức ẩm thực địa phương.</p>",
+      "summary": "Khám phá vẻ đẹp hoang sơ của rừng Liên Nhật",
+      "description": "<p>Tour du lịch sinh thái rừng Liên Nhật giúp du khách khám phá vẻ đẹp hoang sơ của rừng nguyên sinh, trải nghiệm cuộc sống của đồng bào dân tộc và thưởng thức ẩm thực địa phương.</p>",
       "price": 1200000,
       "discountPrice": 1000000,
       "images": "https://placehold.co/600x400/png",
       "categoryId": 3,
       "isFeatured": true,
       "views": 250,
-      "createdAt": "2023-01-10T00:00:00.000Z",
-      "updatedAt": "2023-01-20T00:00:00.000Z"
+      "createdAt": "2024-01-10T00:00:00.000Z",
+      "updatedAt": "2024-01-20T00:00:00.000Z"
     },
     {
       "id": 2,
@@ -318,8 +318,8 @@
       "categoryId": 4,
       "isFeatured": true,
       "views": 180,
-      "createdAt": "2023-01-12T00:00:00.000Z",
-      "updatedAt": "2023-01-22T00:00:00.000Z"
+      "createdAt": "2024-01-12T00:00:00.000Z",
+      "updatedAt": "2024-01-22T00:00:00.000Z"
     }
   ],
   "experiences": [

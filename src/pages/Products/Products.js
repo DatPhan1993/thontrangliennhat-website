@@ -4,14 +4,14 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { getProductsByCategory } from '~/services/productService';
-import Title from '~/components/Title';
+import Title from '~/components/Title/Title';
 import styles from './Products.module.scss';
-import LoadingScreen from '~/components/LoadingScreen';
+import LoadingScreen from '~/components/LoadingScreen/LoadingScreen';
 import { getCategoriesBySlug } from '~/services/categoryService';
 import routes from '~/config/routes';
 import { Helmet } from 'react-helmet';
 import { Empty } from 'antd';
-import Product from 'components/Product';
+import Product from '~/components/Product/Product';
 
 const cx = classNames.bind(styles);
 
@@ -170,7 +170,7 @@ function ProductCategory() {
     return (
         <div className={cx('container')}>
             <Helmet>
-                <title>{categoryName} | HTX Nông Nghiệp - Du Lịch Phú Nông Buôn Đôn</title>
+                <title>{categoryName} | HTX Nông Nghiệp - Du Lịch Phú Nông Liên Nhật</title>
                 <meta
                     name="description"
                     content={`Xem các dịch vụ du lịch liên quan đến ${categoryName} trên HTX Nông Nghiệp - Du Lịch Phú Nông Buôn.`}
