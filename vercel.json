@@ -10,7 +10,8 @@
     }
   ],
   "env": {
-    "REACT_APP_BASE_URL": "https://thontrangliennhat-api.vercel.app",
-    "REACT_APP_API_URL": "https://thontrangliennhat-api.vercel.app/api"
+    "REACT_APP_BASE_URL": "https://api.thontrangliennhat.com",
+    "REACT_APP_API_URL": "https://api.thontrangliennhat.com/api",
+    "DOMAIN": "thontrangliennhat.com"
   }
 } 
