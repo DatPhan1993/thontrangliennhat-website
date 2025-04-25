@@ -1,6 +1,6 @@
 {
-  "short_name": "Thôn Trang Liên Nhất",
-  "name": "Thôn Trang Liên Nhất - HTX Nông Nghiệp và Dịch vụ tổng hợp",
+  "short_name": "Thôn Trang Liên Nhật",
+  "name": "Thôn Trang Liên Nhật - HTX Nông Nghiệp và Dịch vụ tổng hợp",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,23 +8,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "favicon-16x16.png",
-      "type": "image/png",
-      "sizes": "16x16"
-    },
-    {
-      "src": "favicon-32x32.png",
-      "type": "image/png",
-      "sizes": "32x32"
-    },
-    {
-      "src": "apple-touch-icon.png",
+      "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#4caf50",
+  "theme_color": "#000000",
   "background_color": "#ffffff"
 } 
