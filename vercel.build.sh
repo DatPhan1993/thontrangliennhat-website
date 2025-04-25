@@ -21,11 +21,25 @@ fi
 
 # Fix lỗi % ở cuối file
 sed -i 's/%$//g' build/index.html
-sed -i 's/%$//g' build/manifest.json
 
-# Cấp quyền và chạy script tạo lại manifest.json
+# Xóa manifest.json hiện tại và chạy fix-manifest.sh
+rm -f build/manifest.json
 chmod +x ./fix-manifest.sh
 ./fix-manifest.sh
+
+# Thêm một bước nữa để đảm bảo manifest.json không có ký tự đặc biệt
+# Kiểm tra manifest.json có ký tự đặc biệt không
+if grep -q "[^[:ascii:]]" build/manifest.json; then
+  echo "Phát hiện ký tự không phải ASCII, tạo lại file manifest.json"
+  
+  # Tạo manifest siêu tối giản trong trường hợp còn lỗi
+  echo '{
+  "name": "Thon Trang", 
+  "short_name": "Thon Trang",
+  "start_url": ".",
+  "display": "standalone"
+}' > build/manifest.json
+fi
 
 echo "Build hoàn tất. Kiểm tra nội dung:"
 ls -la build/
