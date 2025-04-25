@@ -45,7 +45,8 @@ Thumbs.db
 /volumes
 
 # Backup files
-/backup_rename
+*.zip
+*.bak
 
 # Large files
 **/*.pack
