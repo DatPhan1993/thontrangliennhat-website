@@ -5,15 +5,25 @@
   "alternateName": "Thôn Trang Liên Nhật",
   "url": "https://thontrangliennhat.com",
   "logo": "https://thontrangliennhat.com/logo512.png",
-  "description": "HTX Nông Nghiệp - Dịch Vụ Tổng Hợp Liên Nhật cung cấp dịch vụ du lịch sinh thái, nuôi cá lồng, sản xuất thực phẩm sạch, tinh dầu tự nhiên tại Buôn Đôn, Đắk Lắk.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Thôn Trang Liên Nhật",
-    "addressLocality": "Buôn Đôn",
-    "addressRegion": "Đắk Lắk",
-    "postalCode": "630000",
-    "addressCountry": "VN"
-  },
+  "description": "HTX Nông Nghiệp - Dịch Vụ Tổng Hợp Liên Nhật cung cấp dịch vụ du lịch sinh thái, nuôi cá lồng, sản xuất thực phẩm sạch, tinh dầu tự nhiên tại Hà Tĩnh và Buôn Đôn, Đắk Lắk.",
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "Thôn Trang Liên Nhật",
+      "addressLocality": "Buôn Đôn",
+      "addressRegion": "Đắk Lắk",
+      "postalCode": "630000",
+      "addressCountry": "VN"
+    },
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "Thôn Trang Liên Nhật",
+      "addressLocality": "Hà Tĩnh",
+      "addressRegion": "Hà Tĩnh",
+      "postalCode": "480000",
+      "addressCountry": "VN"
+    }
+  ],
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+84-xxx-xxx-xxx",
@@ -30,11 +40,11 @@
       {
         "@type": "OfferCatalog",
         "name": "Dịch vụ du lịch sinh thái",
-        "description": "Dịch vụ du lịch sinh thái tại vùng hồ thủy điện"
+        "description": "Dịch vụ du lịch sinh thái tại vùng hồ thủy điện và Hà Tĩnh"
       },
       {
         "@type": "OfferCatalog",
-        "name": "Sản phẩm nông nghiệp",
+        "name": "Sản phẩm nông nghiệp sạch",
         "description": "Các sản phẩm nông nghiệp sạch, an toàn và chất lượng cao"
       },
       {
@@ -46,6 +56,11 @@
         "@type": "OfferCatalog",
         "name": "Tinh dầu tự nhiên",
         "description": "Các sản phẩm tinh dầu từ thiên nhiên"
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Sản phẩm OCOP",
+        "description": "Các sản phẩm OCOP đặc trưng tại Hà Tĩnh và Đắk Lắk"
       }
     ]
   }

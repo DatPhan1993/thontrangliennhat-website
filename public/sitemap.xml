@@ -54,4 +54,41 @@
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
+  <!-- Trang liên quan đến từ khóa -->
+  <url>
+    <loc>https://thontrangliennhat.com/ha-tinh</loc>
+    <lastmod>2023-07-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://thontrangliennhat.com/du-lich-sinh-thai</loc>
+    <lastmod>2023-07-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://thontrangliennhat.com/nong-nghiep-sach</loc>
+    <lastmod>2023-07-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://thontrangliennhat.com/thuc-pham-sach</loc>
+    <lastmod>2023-07-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://thontrangliennhat.com/san-pham-ocop</loc>
+    <lastmod>2023-07-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://thontrangliennhat.com/du-lich-ha-tinh</loc>
+    <lastmod>2023-07-26</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
 </urlset> 
